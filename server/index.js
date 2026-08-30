@@ -25,6 +25,10 @@ app.get('/api/health', (_req, res) => res.json({ ok: true, service: 'bibliozen' 
 // API do acervo (CRUD).
 app.use('/api/acervo', acervoRouter);
 
+// Capas enviadas pelo usuário (imagens em capas/, fora do git). Servidas para
+// aparecerem como miniatura na listagem. `caminho_capa` guarda "/capas/<id>.ext".
+app.use('/capas', express.static(join(ROOT, 'capas')));
+
 // Front-end estático: serve os arquivos de src/ (index.html, páginas de apoio,
 // js/, css/, logo.svg…). É o mesmo conteúdo que o build.mjs publica em dist/.
 app.use(express.static(join(ROOT, 'src')));

@@ -42,6 +42,9 @@
                 <a href="index.html" class="px-4 py-2.5 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-brand-600 dark:hover:text-accent-400 whitespace-nowrap flex items-center gap-1">
                     <i aria-hidden="true" class="fa-solid fa-arrow-left"></i> Início
                 </a>
+                <a href="catalogar.html" class="px-4 py-2.5 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-brand-600 dark:hover:text-accent-400 whitespace-nowrap flex items-center gap-1">
+                    <i aria-hidden="true" class="fa-solid fa-book"></i> Catalogar
+                </a>
             </div>
         </nav>
     </header>`;

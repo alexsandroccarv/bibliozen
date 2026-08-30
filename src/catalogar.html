@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogar — BiblioZen</title>
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <link rel="stylesheet" href="css/styles.css">
+    <script>
+        (function () {
+            const htmlEl = document.documentElement;
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            try {
+                const saved = localStorage.getItem('tema');
+                if (saved ? saved === 'dark' : prefersDark) htmlEl.classList.add('dark');
+                if (localStorage.getItem('altoContraste') === '1') htmlEl.classList.add('high-contrast');
+                const fs = parseInt(localStorage.getItem('fontScale') || '100', 10);
+                if (fs && fs !== 100) htmlEl.style.fontSize = fs + '%';
+            } catch (e) { if (prefersDark) htmlEl.classList.add('dark'); }
+        })();
+    </script>
+    <script src="js/cdn.js"></script>
+</head>
+<body data-page-title="Catalogar" class="font-sans bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 min-h-screen flex flex-col transition-colors duration-300">
+    <div id="app-header"></div>
+
+    <main class="flex-1 w-full max-w-6xl mx-auto px-4 py-6">
+        <h1 class="text-xl font-bold flex items-center gap-2 mb-6">
+            <i aria-hidden="true" class="fa-solid fa-book text-brand-600 dark:text-accent-400"></i> Catalogação do acervo
+        </h1>
+
+        <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-6 items-start">
+            <!-- ============ FORMULÁRIO ============ -->
+            <section class="bg-brand-50 dark:bg-gray-800 border border-brand-100 dark:border-gray-700 rounded-lg p-5">
+                <h2 id="formTitulo" class="text-base font-bold mb-4 flex items-center gap-2">
+                    <i aria-hidden="true" class="fa-solid fa-plus text-brand-600 dark:text-accent-400"></i>
+                    <span>Novo item</span>
+                </h2>
+
+                <form id="acervoForm" novalidate class="space-y-4">
+                    <input type="hidden" id="id" name="id">
+                    <input type="hidden" id="caminho_capa" name="caminho_capa">
+
+                    <div>
+                        <label for="tipo_material" class="block text-sm font-medium mb-1">Tipo de material</label>
+                        <select id="tipo_material" name="tipo_material" class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                            <option value="">— selecione —</option>
+                            <option>Livros</option>
+                            <option>Histórias em Quadrinhos</option>
+                            <option>Revistas</option>
+                            <option>Revistas Científicas</option>
+                            <option>CDs</option>
+                            <option>DVDs</option>
+                            <option>Livros Eletrônicos</option>
+                            <option>Folhetos</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="titulo" class="block text-sm font-medium mb-1">Título <span class="text-red-600" aria-hidden="true">*</span></label>
+                        <input type="text" id="titulo" name="titulo" required class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                    </div>
+
+                    <div>
+                        <label for="subtitulo" class="block text-sm font-medium mb-1">Subtítulo</label>
+                        <input type="text" id="subtitulo" name="subtitulo" class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="autor_principal" class="block text-sm font-medium mb-1">Autor principal</label>
+                            <input type="text" id="autor_principal" name="autor_principal" class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                        </div>
+                        <div>
+                            <label for="organizador" class="block text-sm font-medium mb-1">Organizador</label>
+                            <input type="text" id="organizador" name="organizador" class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="autores_secundarios" class="block text-sm font-medium mb-1">Autores secundários</label>
+                        <input type="text" id="autores_secundarios" name="autores_secundarios" placeholder="Separe vários por ; ou ," class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                            <label for="edicao" class="block text-sm font-medium mb-1">Edição</label>
+                            <input type="text" id="edicao" name="edicao" class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                        </div>
+                        <div>
+                            <label for="cidade_publicacao" class="block text-sm font-medium mb-1">Cidade</label>
+                            <input type="text" id="cidade_publicacao" name="cidade_publicacao" class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                        </div>
+                        <div>
+                            <label for="editora" class="block text-sm font-medium mb-1">Editora</label>
+                            <input type="text" id="editora" name="editora" class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="ano" class="block text-sm font-medium mb-1">Ano</label>
+                            <input type="number" id="ano" name="ano" min="0" max="9999" class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                        </div>
+                        <div>
+                            <label for="paginas_duracao" class="block text-sm font-medium mb-1">Páginas / duração</label>
+                            <input type="text" id="paginas_duracao" name="paginas_duracao" placeholder="ex.: 256 p. ou 01:45:00" class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                            <label for="cdd" class="block text-sm font-medium mb-1">CDD</label>
+                            <input type="number" id="cdd" name="cdd" min="0" max="999" placeholder="0–999" class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                        </div>
+                        <div>
+                            <label for="cutter" class="block text-sm font-medium mb-1">Cutter</label>
+                            <input type="text" id="cutter" name="cutter" class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                        </div>
+                        <div>
+                            <label for="tipo_capa" class="block text-sm font-medium mb-1">Tipo de capa</label>
+                            <select id="tipo_capa" name="tipo_capa" class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                                <option value="">— selecione —</option>
+                                <option>Brochura</option>
+                                <option>Capa Dura</option>
+                                <option>Espiral</option>
+                                <option>Digital</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="capa" class="block text-sm font-medium mb-1">Capa (imagem)</label>
+                        <div class="flex items-center gap-3">
+                            <img id="capaPreview" alt="" hidden class="w-16 h-20 object-cover rounded border border-gray-300 dark:border-gray-600">
+                            <input type="file" id="capa" name="capa" accept="image/*" class="block w-full text-sm text-gray-600 dark:text-gray-300 file:mr-3 file:py-2 file:px-3 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-brand-600 file:text-white hover:file:bg-brand-700 file:cursor-pointer">
+                        </div>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Formatos: JPG, PNG, GIF, WEBP ou SVG (até 5 MB).</p>
+                    </div>
+
+                    <div id="formErro" hidden class="rounded-md border border-red-300 bg-red-50 dark:bg-red-950/40 text-red-800 dark:text-red-200 text-sm p-3"></div>
+
+                    <div class="flex items-center gap-3 pt-1">
+                        <button type="submit" id="btnSalvar" class="inline-flex items-center gap-2 rounded-md bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-4 py-2 transition-colors">
+                            <i aria-hidden="true" class="fa-solid fa-floppy-disk"></i> <span id="btnSalvarLabel">Salvar</span>
+                        </button>
+                        <button type="button" id="btnCancelar" class="inline-flex items-center gap-2 rounded-md border border-gray-300 dark:border-gray-600 text-sm font-medium px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                            <i aria-hidden="true" class="fa-solid fa-eraser"></i> Limpar
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- ============ LISTAGEM ============ -->
+            <section>
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-base font-bold flex items-center gap-2">
+                        <i aria-hidden="true" class="fa-solid fa-list text-brand-600 dark:text-accent-400"></i>
+                        Itens cadastrados <span id="contador" class="text-xs font-normal text-gray-500 dark:text-gray-400"></span>
+                    </h2>
+                    <button type="button" id="btnRecarregar" title="Recarregar" aria-label="Recarregar" class="text-gray-500 hover:text-brand-600 dark:hover:text-accent-400 transition-colors">
+                        <i aria-hidden="true" class="fa-solid fa-rotate-right"></i>
+                    </button>
+                </div>
+                <div id="lista" class="space-y-3" aria-live="polite">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Carregando…</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="toasts" class="fixed bottom-16 right-4 z-50 flex flex-col gap-2" aria-live="polite"></div>
+    <div id="app-footer"></div>
+
+    <script src="js/version.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/chrome.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/catalogar.js"></script>
+</body>
+</html>
