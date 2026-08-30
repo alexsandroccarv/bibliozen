@@ -5,6 +5,16 @@ Template reutilizável de cabeçalho, rodapé, estrutura de arquivos e CI/CD
 (build + deploy via SSH) para começar novos projetos web a partir de uma
 base pronta.
 
+## Backend local e dados
+- App local (roda no navegador do usuário): servidor **Node.js + Express** em
+  `server/` (`npm start` → `http://localhost:3000`). Serve o front-end de
+  `src/` e a API REST do acervo.
+- Persistência **sem banco**: arquivo `data/acervo.json` (fora do git; criado
+  no 1º start). Escrita atômica e serializada em `server/db.js`.
+- Modelo do item + validação/normalização em `server/schema.js` (fonte única
+  do schema); CRUD em `server/routes/acervo.js` (`/api/acervo`).
+- IDs em UUID via `crypto.randomUUID()` (nativo, sem dependência `uuid`).
+
 ## Padrões de UI
 - Cabeçalho/rodapé (site estático HTML+JS): fonte única em `src/js/chrome.js`
   (injeta em `#app-header`/`#app-footer`). Não recriar por página. O `index.html`

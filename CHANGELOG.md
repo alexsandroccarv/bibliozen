@@ -5,6 +5,22 @@ Todas as mudanças notáveis deste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
 e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [0.0.2] - 2026-08-30
+
+### Adicionado
+- Backend local em **Node.js + Express** (`server/`) que serve o front-end de
+  `src/` e expõe a API REST do acervo — roda em `http://localhost:3000` via
+  `npm start` (#10).
+- Persistência em arquivo `data/acervo.json` com escrita atômica e serializada
+  (`server/db.js`); o arquivo é criado vazio no primeiro start (#10).
+- Modelo de dados do acervo + validação/normalização (`server/schema.js`):
+  `titulo` obrigatório, `ano`/`cdd` numéricos (CDD 0–999) e
+  `autores_secundarios` sempre como array; campos desconhecidos são
+  descartados (#10).
+- Endpoints CRUD em `/api/acervo` — `GET` (lista), `GET /:id`, `POST`, `PUT` e
+  `DELETE` (`server/routes/acervo.js`), com `id` em UUID gerado no servidor
+  (#10).
+
 ## [0.0.1] - 2026-08-30
 
 ### Adicionado

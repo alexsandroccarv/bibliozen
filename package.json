@@ -1,0 +1,20 @@
+{
+  "name": "bibliozen",
+  "version": "0.0.0",
+  "description": "Sistema de gestão de bibliotecas que roda localmente no navegador (backend local em Node.js + Express, persistência em acervo.json).",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "build": "node build.mjs",
+    "check": "node --check server/index.js && node --check server/db.js && node --check server/schema.js && node --check server/routes/acervo.js",
+    "contrast": "node tools/contrast-check.mjs"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

@@ -7,6 +7,45 @@ partir do [lattesZen](https://github.com/alexsandroccarv/latteszen).
 Use este repositório como ponto de partida para novos projetos que
 precisem de um layout pronto, acessível e com tema claro/escuro.
 
+## Backend local e API do acervo
+
+O BiblioZen roda **localmente**: um servidor Node.js + Express serve o
+front-end de `src/` e expõe a API REST do acervo, persistida em
+`data/acervo.json` (sem banco de dados).
+
+```bash
+npm install
+npm start          # sobe em http://localhost:3000
+```
+
+Estrutura do backend:
+
+```
+server/
+├── index.js          # servidor Express (front-end estático + API)
+├── db.js             # leitura/escrita atômica de data/acervo.json
+├── schema.js         # modelo do item + validação/normalização
+└── routes/
+    └── acervo.js     # CRUD em /api/acervo
+data/
+└── acervo.json       # acervo persistido (criado no 1º start; fora do git)
+```
+
+Endpoints (`/api/acervo`):
+
+| Método | Rota | Ação |
+|---|---|---|
+| `GET` | `/api/acervo` | Lista todos os itens |
+| `GET` | `/api/acervo/:id` | Um item (404 se não existir) |
+| `POST` | `/api/acervo` | Cria um item (gera `id` UUID) |
+| `PUT` | `/api/acervo/:id` | Atualiza um item (mantém o `id`) |
+| `DELETE` | `/api/acervo/:id` | Remove um item |
+
+Modelo de dados (item do acervo): `id` (UUID), `tipo_material`, `titulo`
+(obrigatório), `subtitulo`, `autor_principal`, `autores_secundarios` (array),
+`organizador`, `edicao`, `cidade_publicacao`, `editora`, `ano` (número),
+`paginas_duracao`, `tipo_capa`, `cdd` (número, 0–999), `cutter`, `caminho_capa`.
+
 ## O que vem pronto
 
 - **Cabeçalho** com logo, nome do app, selo opcional (sigla), logo
