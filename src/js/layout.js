@@ -1,5 +1,5 @@
 /* ==========================================================================
-   templateZen — lógica do cabeçalho/rodapé (tema, alto contraste, escala de
+   BiblioZen — lógica do cabeçalho/rodapé (tema, alto contraste, escala de
    fonte e navegação por abas). Genérico e reaproveitável entre projetos.
    ========================================================================== */
 (function () {

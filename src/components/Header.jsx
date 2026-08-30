@@ -1,5 +1,5 @@
 /* ==========================================================================
-   templateZen — Header padrão (versão React do cabeçalho de src/index.html)
+   BiblioZen — Header padrão (versão React do cabeçalho de src/index.html)
    --------------------------------------------------------------------------
    Assume Tailwind configurado com as cores `brand`/`accent` (ver o
    TW_CONFIG comentado em src/index.html) e Font Awesome disponível.

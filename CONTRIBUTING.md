@@ -1,6 +1,6 @@
 # Como contribuir
 
-Obrigado por contribuir com o **templateZen**! Este projeto segue um fluxo
+Obrigado por contribuir com o **BiblioZen**! Este projeto segue um fluxo
 simples, orientado a issues.
 
 ## Fluxo de trabalho (Git)

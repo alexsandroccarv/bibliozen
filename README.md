@@ -1,4 +1,4 @@
-# templateZen
+# BiblioZen
 
 Template de cabeçalho, rodapé e estrutura de arquivos para aplicações web
 estáticas (HTML + Tailwind via CDN + JS puro), extraído e generalizado a
@@ -47,7 +47,7 @@ precisem de um layout pronto, acessível e com tema claro/escuro.
 ## Estrutura de arquivos
 
 ```
-templatezen/
+bibliozen/
 ├── LICENSE
 ├── README.md
 ├── DEPLOY.md                    # Como configurar a publicação via SSH

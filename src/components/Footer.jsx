@@ -1,5 +1,5 @@
 /* ==========================================================================
-   templateZen — Footer padrão (versão React do rodapé de src/index.html)
+   BiblioZen — Footer padrão (versão React do rodapé de src/index.html)
    --------------------------------------------------------------------------
    Porta o mesmo comportamento de src/js/layout.js (tema claro/escuro, alto
    contraste e escala de fonte) para hooks React, controlando as mesmas

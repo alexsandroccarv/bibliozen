@@ -1,5 +1,5 @@
 /* ==========================================================================
-   templateZen — carregador de recursos externos (Tailwind + Font Awesome)
+   BiblioZen — carregador de recursos externos (Tailwind + Font Awesome)
    --------------------------------------------------------------------------
    Carrega as CDNs de forma ASSÍNCRONA e tolerante a falha: se a CDN estiver
    lenta/bloqueada, a aplicação continua funcionando (o fallback em

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   templateZen — auditoria de contraste (WCAG) das paletas de tema
+   BiblioZen — auditoria de contraste (WCAG) das paletas de tema
    --------------------------------------------------------------------------
    Lê as paletas (html[data-tz-theme="..."]) de src/css/styles.css e verifica
    os pares de cor críticos contra os limiares WCAG AA. Sai com código 1 se

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   templateZen — Configuração global da aplicação
+   BiblioZen — Configuração global da aplicação
    Edite este arquivo para adaptar o cabeçalho/rodapé ao seu projeto.
    ========================================================================== */
 window.APP_CONFIG = {

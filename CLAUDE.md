@@ -1,4 +1,4 @@
-# Projeto: templateZen
+# Projeto: BiblioZen
 
 ## Visão geral
 Template reutilizável de cabeçalho, rodapé, estrutura de arquivos e CI/CD

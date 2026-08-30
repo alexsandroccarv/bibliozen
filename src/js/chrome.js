@@ -1,5 +1,5 @@
 /* ==========================================================================
-   templateZen — cabeçalho e rodapé compartilhados (fonte única)
+   BiblioZen — cabeçalho e rodapé compartilhados (fonte única)
    --------------------------------------------------------------------------
    Injeta o cabeçalho e o rodapé nos pontos de montagem `#app-header` e
    `#app-footer`, para que as páginas de apoio (termo de uso, privacidade,

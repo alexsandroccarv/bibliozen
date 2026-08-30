@@ -1,5 +1,5 @@
 /* ==========================================================================
-   templateZen — build (monta a pasta publicável)
+   BiblioZen — build (monta a pasta publicável)
    --------------------------------------------------------------------------
    A aplicação é composta por vários arquivos (index.html + css/ + js/ +
    imagens) dentro de src/. Este build apenas MONTA a pasta dist/ (o que vai

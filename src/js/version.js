@@ -1,5 +1,5 @@
 /* ==========================================================================
-   templateZen — dados de build (fontes únicas: arquivo VERSION + data do build)
+   BiblioZen — dados de build (fontes únicas: arquivo VERSION + data do build)
    --------------------------------------------------------------------------
    Expõe em `window` a versão e a data do build para que o rodapé
    (config.js -> #appVersion / #lastModDate) reflita AUTOMATICAMENTE:
