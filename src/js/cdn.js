@@ -76,7 +76,7 @@
                 fontFamily: { sans: ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'] },
                 colors: {
                     // Cor primária da marca (cabeçalho/rodapé).
-                    brand:  { 50: '#e8edfb', 100: '#d2dcf7', 400: '#6c8ce6', 600: '#1d4ed8', 700: '#1942b8', 800: '#143797', 900: '#102b77' },
+                    brand:  { 50: '#fff8e6', 100: '#fef1cd', 400: '#fdd25b', 600: '#fcba03', 700: '#d69e03', 800: '#b08202', 900: '#8b6602' },
                     // Cor de destaque (usada em detalhes no tema escuro).
                     accent: { 50: '#f0fdf4', 100: '#dcfce7', 400: '#4ade80', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d' },
                 }
