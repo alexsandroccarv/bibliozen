@@ -46,6 +46,15 @@ Modelo de dados (item do acervo): `id` (UUID), `tipo_material`, `titulo`
 `organizador`, `edicao`, `cidade_publicacao`, `editora`, `ano` (número),
 `paginas_duracao`, `tipo_capa`, `cdd` (número, 0–999), `cutter`, `caminho_capa`.
 
+### Etiquetas de lombada (PDF)
+
+Na tela de catalogação, selecione itens e clique em **"Gerar Etiquetas"** para
+baixar um PDF no layout **Pimaco 6180 / Avery 5160** (Carta): 3 colunas × 10
+linhas, etiqueta de 25,4 × 66,7 mm. Cada etiqueta traz o **CDD** e o **Cutter**
+centralizados e uma **faixa colorida** no topo cuja cor segue a centena do CDD.
+O campo "posição inicial" permite pular etiquetas já usadas numa folha. Gerado
+no navegador com [jsPDF](https://github.com/parallax/jsPDF) (via CDN).
+
 ## O que vem pronto
 
 - **Cabeçalho** com logo, nome do app, selo opcional (sigla), logo

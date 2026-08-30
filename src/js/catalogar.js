@@ -60,8 +60,10 @@
         var meta = [];
         meta.push('CDD: ' + (item.cdd != null && item.cdd !== '' ? esc(item.cdd) : '—'));
         meta.push('Cutter: ' + (item.cutter ? esc(item.cutter) : '—'));
+        var checked = selecionados.has(item.id) ? ' checked' : '';
         return '' +
             '<article class="flex items-center gap-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3">' +
+                '<input type="checkbox" data-sel="' + esc(item.id) + '"' + checked + ' class="accent-brand-600 shrink-0" aria-label="Selecionar para etiqueta">' +
                 thumb(item) +
                 '<div class="min-w-0 flex-1">' +
                     '<p class="font-semibold truncate">' + esc(item.titulo || '(sem título)') + '</p>' +
@@ -76,15 +78,31 @@
     }
 
     var cache = [];
+    var selecionados = new Set();
+
+    // Atualiza contagem, estado do botão e o "selecionar todos".
+    function atualizarSelecao() {
+        var n = selecionados.size;
+        document.getElementById('selCount').textContent = n ? '(' + n + ')' : '';
+        document.getElementById('btnEtiquetas').disabled = n === 0;
+        var todos = document.getElementById('selecionarTodos');
+        todos.checked = cache.length > 0 && n === cache.length;
+        todos.indeterminate = n > 0 && n < cache.length;
+    }
 
     function render(items) {
         cache = items;
+        // Mantém selecionados apenas os ids que ainda existem.
+        var ids = new Set(items.map(function (it) { return it.id; }));
+        selecionados.forEach(function (id) { if (!ids.has(id)) selecionados.delete(id); });
         contador.textContent = '(' + items.length + ')';
         if (!items.length) {
             lista.innerHTML = '<p class="text-sm text-gray-500 dark:text-gray-400">Nenhum item cadastrado ainda.</p>';
+            atualizarSelecao();
             return;
         }
         lista.innerHTML = items.map(cardHTML).join('');
+        atualizarSelecao();
     }
 
     async function carregar() {
@@ -184,6 +202,35 @@
         var de = e.target.closest('[data-del]');
         if (ed) editar(ed.getAttribute('data-edit'));
         else if (de) excluir(de.getAttribute('data-del'));
+    });
+
+    // Seleção de itens para etiquetas.
+    lista.addEventListener('change', function (e) {
+        var cb = e.target.closest('[data-sel]');
+        if (!cb) return;
+        var id = cb.getAttribute('data-sel');
+        if (cb.checked) selecionados.add(id); else selecionados.delete(id);
+        atualizarSelecao();
+    });
+
+    document.getElementById('selecionarTodos').addEventListener('change', function (e) {
+        selecionados = new Set(e.target.checked ? cache.map(function (it) { return it.id; }) : []);
+        // Reflete nos checkboxes já renderizados.
+        lista.querySelectorAll('[data-sel]').forEach(function (cb) {
+            cb.checked = selecionados.has(cb.getAttribute('data-sel'));
+        });
+        atualizarSelecao();
+    });
+
+    document.getElementById('btnEtiquetas').addEventListener('click', function () {
+        var itens = cache.filter(function (it) { return selecionados.has(it.id); });
+        if (!itens.length) return;
+        var startPos = parseInt(document.getElementById('posInicial').value, 10) || 1;
+        try {
+            window.BiblioZenEtiquetas.gerar(itens, { startPos: startPos });
+        } catch (err) {
+            window.alert('Não foi possível gerar as etiquetas: ' + err.message);
+        }
     });
 
     form.addEventListener('submit', salvar);

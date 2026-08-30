@@ -153,7 +153,7 @@
 
             <!-- ============ LISTAGEM ============ -->
             <section>
-                <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center justify-between mb-3">
                     <h2 class="text-base font-bold flex items-center gap-2">
                         <i aria-hidden="true" class="fa-solid fa-list text-brand-600 dark:text-accent-400"></i>
                         Itens cadastrados <span id="contador" class="text-xs font-normal text-gray-500 dark:text-gray-400"></span>
@@ -162,6 +162,21 @@
                         <i aria-hidden="true" class="fa-solid fa-rotate-right"></i>
                     </button>
                 </div>
+
+                <!-- Barra de etiquetas: seleção + geração de PDF -->
+                <div class="bg-brand-50 dark:bg-gray-800 border border-brand-100 dark:border-gray-700 rounded-lg p-3 mb-3 flex flex-wrap items-center gap-3">
+                    <label class="flex items-center gap-2 text-sm">
+                        <input type="checkbox" id="selecionarTodos" class="accent-brand-600"> Selecionar todos
+                    </label>
+                    <label class="flex items-center gap-2 text-sm ml-auto" title="Pular etiquetas já usadas na folha (1 a 30)">
+                        <span>Posição inicial</span>
+                        <input type="number" id="posInicial" min="1" max="30" value="1" class="w-16 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-2 py-1 text-sm">
+                    </label>
+                    <button type="button" id="btnEtiquetas" disabled class="inline-flex items-center gap-2 rounded-md bg-brand-600 hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-semibold px-4 py-2 transition-colors">
+                        <i aria-hidden="true" class="fa-solid fa-tags"></i> Gerar Etiquetas <span id="selCount"></span>
+                    </button>
+                </div>
+
                 <div id="lista" class="space-y-3" aria-live="polite">
                     <p class="text-sm text-gray-500 dark:text-gray-400">Carregando…</p>
                 </div>
@@ -172,10 +187,12 @@
     <div id="toasts" class="fixed bottom-16 right-4 z-50 flex flex-col gap-2" aria-live="polite"></div>
     <div id="app-footer"></div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="js/version.js"></script>
     <script src="js/config.js"></script>
     <script src="js/chrome.js"></script>
     <script src="js/layout.js"></script>
+    <script src="js/etiquetas.js"></script>
     <script src="js/catalogar.js"></script>
 </body>
 </html>

@@ -5,6 +5,19 @@ Todas as mudanças notáveis deste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/),
 e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [0.0.4] - 2026-08-30
+
+### Adicionado
+- Módulo de **impressão de etiquetas de lombada** em PDF (jsPDF, no navegador):
+  seleção de itens na lista + botão "Gerar Etiquetas" (`src/js/etiquetas.js`)
+  (#12).
+- Layout de folha **Pimaco 6180 / Avery 5160** (Carta): 3 colunas × 10 linhas,
+  etiqueta de 25,4 × 66,7 mm, com paginação automática e campo de "posição
+  inicial" para pular etiquetas já usadas (#12).
+- Cada etiqueta traz o **CDD** (1ª linha) e o **Cutter** (2ª linha)
+  centralizados e uma **faixa horizontal (~4 mm)** no topo, colorida conforme a
+  centena do CDD (10 faixas de cor) (#12).
+
 ## [0.0.3] - 2026-08-30
 
 ### Adicionado
