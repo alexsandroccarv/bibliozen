@@ -21,7 +21,7 @@ export default function Header({ appName, sigla = '', userName = '', tabs, activ
             <div className="flex items-center justify-between px-4 py-3 bg-brand-600 dark:bg-gray-900 transition-colors duration-300">
                 <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded bg-white dark:bg-gradient-to-br dark:from-accent-600 dark:to-accent-900 flex items-center justify-center text-brand-600 dark:text-white font-bold transition-colors duration-300">
-                        <i aria-hidden="true" className="fa-solid fa-star" />
+                        <i aria-hidden="true" className="fa-solid fa-book" />
                     </div>
                     <div className="flex items-center gap-2 overflow-hidden">
                         <h1 className="font-bold text-white leading-none whitespace-nowrap">{appName}</h1>

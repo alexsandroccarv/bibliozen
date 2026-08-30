@@ -22,10 +22,10 @@
         <div class="flex items-center justify-between px-4 py-3 bg-brand-600 dark:bg-gray-900 transition-colors duration-300">
             <div class="flex items-center gap-3">
                 <div class="w-8 h-8 rounded bg-white dark:bg-gradient-to-br dark:from-accent-600 dark:to-accent-900 flex items-center justify-center text-brand-600 dark:text-white font-bold transition-colors duration-300">
-                    <i aria-hidden="true" class="fa-solid fa-star"></i>
+                    <i aria-hidden="true" class="fa-solid fa-book"></i>
                 </div>
                 <div class="flex items-center gap-2 overflow-hidden">
-                    <span id="headerAppName" class="font-bold text-white leading-none whitespace-nowrap">TemplateZen</span>
+                    <span id="headerAppName" class="font-bold text-white leading-none whitespace-nowrap">BiblioZen</span>
                     <span class="text-xl text-white/30 dark:text-gray-700 font-light hidden">|</span>
                     <span id="headerSigla" class="font-bold text-white/90 dark:text-accent-400 leading-none whitespace-nowrap hidden"></span>
                     <span id="headerUserNameSep" class="text-xl text-white/30 dark:text-gray-700 font-light hidden">|</span>
